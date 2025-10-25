@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adelin Software - Yenilikçi Dijital Çözümler</title>
+    <meta name="description" content="Adelin Software, web ve mobil uygulama geliştirme, yapay zeka ve otomasyon çözümleri sunar.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-content">
+            <img src="img/logo-adelin.jpg" alt="Adelin Software Logo Yükleniyor...">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="#hero" class="nav-logo">
+                <img src="img/logo-adelin.jpg" alt="Adelin Software Logo" class="logo-image">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#hero" class="nav-link" data-key="navHome">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link" data-key="navAbout">Hakkımızda</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link" data-key="navProjects">Projelerimiz</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link" data-key="navContact">İletişim</a></li>
+                
+                <li class="nav-item lang-switcher">
+                    <a href="#" class="nav-link lang-toggle">
+                        <i class="fas fa-globe"></i> 
+                        <span id="current-lang-text">TR</span> 
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" class="lang-option" data-lang="tr">Türkçe (TR)</a></li>
+                        <li><a href="#" class="lang-option" data-lang="en">English (EN)</a></li>
+<li><a href="#" class="lang-option" data-lang="de">Deutsch (DE)</a></li>
+                        <li><a href="#" class="lang-option" data-lang="fr">Français (FR)</a></li>
+                        <li><a href="#" class="lang-option" data-lang="zh">中文 (ZH)</a></li>
+                        <li><a href="#" class="lang-option" data-lang="ja">日本語 (JA)</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="hero" class="hero-section">
+            <canvas id="particle-canvas"></canvas>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span data-key="heroTitle1">Geleceği</span> 
+                    <span class="highlight" data-key="heroTitle2">Kodluyoruz</span>.
+                </h1>
+                <p class="hero-subtitle" data-key="heroSubtitle">Adelin Software, işinizi dijital dünyaya taşıyan yenilikçi ve güçlü yazılım çözümleri sunar.</p>
+                <a href="#projects" class="btn btn-primary" data-key="heroButton">Projelerimizi Keşfedin</a>
+            </div>
+        </section>
+
+        <section id="about" class="about-section content-section">
+            <div class="container">
+                <h2 class="section-title" data-key="aboutTitle">Hakkımızda</h2>
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <h3 data-key="aboutSubTitle">Biz Kimiz?</h3>
+                        <p data-key="aboutDesc">Adelin Software, dijital dünyanın sınırlarını zorlayan, yenilikçi ve kullanıcı odaklı yazılım çözümleri üreten bir teknoloji oluşumudur. Web ve mobil platformlarda, yapay zekadan otomasyon sistemlerine kadar geniş bir yelpzazede hizmet veriyoruz.</p>
+                        <div class="mission-vision">
+                            <div class="card">
+                                <i class="fas fa-rocket"></i>
+                                <h4 data-key="aboutMissionTitle">Misyonumuz</h4>
+                                <p data-key="aboutMissionDesc">Kullanıcıların ihtiyaçlarına yönelik en yüksek kalitede, ölçeklenebilir ve güvenli yazılım çözümleri sunarak dijital dönüşüm yolculuklarında onlara rehberlik etmek.</p>
+                            </div>
+                            <div class="card">
+                                <i class="fas fa-eye"></i>
+                                <h4 data-key="aboutVisionTitle">Vizyonumuz</h4>
+                                <p data-key="aboutVisionDesc">Teknoloji alanında global bir lider olmak, yapay zeka ve otomasyon sistemleri ile sektörlere yön veren, sürdürülebilir ve yenilikçi projelere imza atmak.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image fade-in">
+                        <img src="img/logo-adelin.jpg" alt="Adelin Software">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section content-section">
+            <div class="container">
+                <h2 class="section-title" data-key="projectsTitle">Yaklaşan Projelerimiz</h2>
+                <p class="section-subtitle" data-key="projectsSubtitle">Yakında Google Play Store ve App Store'da!</p>
+                <div class="project-grid">
+                    <div class="project-card fade-in">
+                        <div class="project-image">
+                            <img src="img/promo-capx.png" alt="CapX Projesi Tanıtımı">
+                        </div>
+                        <div class="project-content">
+                            <img src="img/logo-capx.jpg" alt="CapX Logo" class="project-logo">
+                            <h3 class="project-title">CapX</h3>
+                            <p class="project-description" data-key="project1Desc">Gelişmiş risk yönetimi ve arbitraj stratejileri. Finansal hedeflerinize ulaşmak hiç bu kadar kolay olmamıştı!</p>
+                            <span class="project-status" data-key="project1Status">Yakında App Store, Google Play ve Web'de!</span>
+                        </div>
+                    </div>
+                    <div class="project-card fade-in">
+                        <div class="project-image">
+                            <img src="img/promo-candostum.png" alt="CanDostum Projesi Tanıtımı">
+                        </div>
+                        <div class="project-content">
+                            <img src="img/logo-candostum.jpg" alt="CanDostum Logo" class="project-logo">
+                            <h3 class="project-title">CanDostum</h3>
+                            <p class="project-description" data-key="project2Desc">Pati-severlerin yeni gözdesi! Aşı takvimi, dijital sağlık karnesi, sohbet ve yardımlaşma. Tüm "Pati" bilgileri tek yerde.</p>
+                            <span class="project-status" data-key="project2Status">Yakında Google Play Store'da!</span>
+                        </div>
+                    </div>
+                    <div class="project-card fade-in">
+                        <div class="project-image">
+                            <img src="img/promo-zikirmatik.jpg" alt="ZikirMatik Projesi Tanıtımı">
+                        </div>
+                        <div class="project-content">
+                            <img src="img/logo-zikirmatik.png" alt="ZikirMatik Logo" class="project-logo">
+                            <h3 class="project-title">ZikirMatik</h3>
+                            <p class="project-description" data-key="project3Desc">Modern, kullanıcı dostu ve kişiselleştirilebilir dijital tesbih deneyimi. Manevi yolculuğunuzda yeni yardımcınız.</p>
+                            <span class="project-status" data-key="project3Status">Yakında Google Play Store'da!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section content-section">
+            <div class="container">
+                <h2 class="section-title" data-key="contactTitle">Bize Ulaşın</h2>
+                <p class="section-subtitle" data-key="contactSubtitle">Proje fikriniz mi var? Sizinle tanışmak için sabırsızlanıyoruz.</p>
+                <div class="contact-wrapper">
+                    <div class="contact-info fade-in">
+                        <h3 data-key="contactInfoTitle">İletişim Bilgileri</h3>
+                        <p data-key="contactInfoDesc">Proje teklifleri, işbirlikleri veya sorularınız için bize yazabilirsiniz.</p>
+                        <ul>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <span><a href="mailto:info@adelinsoftware.com.tr">info@adelinsoftware.com.tr</a></span>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-key="contactInfoLocation">Türkiye</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="contact-form-container fade-in">
+                        <h3 data-key="contactFormTitle">Mesaj Gönderin</h3>
+                        <form id="contact-form" action="httpsS://formspree.io/f/SİZİN_FORM_IDNİZ" method="POST">
+                            <div class="form-group">
+                                <label for="name" data-key="formName">Adınız Soyadınız</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" data-key="formEmail">E-posta Adresiniz</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject" data-key="formSubject">Konu</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" data-key="formMessage">Mesajınız</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" data-key="formButton">Formu Gönder</button>
+                            <p id="form-status"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="img/logo-adelin.jpg" alt="Adelin Software Footer Logo">
+                </div>
+                <div class="footer-links">
+                    <h4 data-key="footerLinks">Hızlı Erişim</h4>
+                    <a href="#about" data-key="navAbout">Hakkımızda</a>
+                    <a href="#projects" data-key="navProjects">Projeler</a>
+                    <a href="#contact" data-key="navContact">İletişim</a>
+                </div>
+                <div class="footer-contact">
+                    <h4 data-key="navContact">İletişim</h4>
+                    <p><a href="mailto:info@adelinsoftware.com.tr">info@adelinsoftware.com.tr</a></p>
+                    <p>www.adelinsoftware.com.tr</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-key="footerLegal">&copy; <span id="current-year"></span> Adelin Software. Tüm Hakları Saklıdır. | Bu sitedeki tüm içerik ve materyaller izne tabidir.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

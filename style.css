@@ -1,0 +1,302 @@
+/* ---------------------------------- */
+/* YENİ: YÜKLEME EKRANI (LOADER) */
+/* ---------------------------------- */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--primary-color);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.loader-content {
+    text-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loader img {
+    width: 150px; /* Logo boyutu */
+    height: 150px;
+    border-radius: 12px;
+}
+
+/* "Dönen ışık" efekti */
+.spinner {
+    position: absolute;
+    width: 200px; /* Döngünün boyutu (logodan büyük) */
+    height: 200px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: var(--accent-color);
+    border-right-color: var(--accent-color);
+    animation: spin 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0.5;
+    }
+    50% {
+        transform: rotate(180deg);
+        opacity: 1;
+        border-top-color: var(--accent-color);
+        border-right-color: #555; /* Geçişte renk değişimi */
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 0.5;
+    }
+}
+
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+/* ---------------------------------- */
+/* GENEL AYARLAR (Aynı) */
+/* ---------------------------------- */
+:root {
+    --primary-color: #0b0f19; /* Ana Koyu Renk */
+    --secondary-color: #0F172A; /* İkincil Koyu Renk */
+    --accent-color: #D4AF37;  /* Altın Vurgu Rengi (logodan) */
+    --accent-color-dark: #b89a30;
+    --text-color: #E0E0E0;    /* Ana Metin Rengi (Kırık Beyaz) */
+    --text-color-light: #ffffff;
+    --card-bg: #1E293B;     /* Kart Arka Planı */
+    --border-color: #334155;
+    
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Montserrat', sans-serif;
+}
+/* (Diğer genel stiller aynı) */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-secondary); background-color: var(--primary-color); color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+img { max-width: 100%; height: auto; }
+a { text-decoration: none; color: var(--accent-color); transition: color 0.3s ease; }
+a:hover { color: var(--accent-color-dark); }
+h1, h2, h3, h4 { font-family: var(--font-primary); font-weight: 600; color: var(--text-color-light); }
+.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--text-color-light); }
+.section-subtitle { font-size: 1.1rem; text-align: center; color: var(--text-color); margin-bottom: 3rem; }
+.content-section { padding: 6rem 0; }
+.btn { display: inline-block; padding: 0.8rem 1.8rem; font-family: var(--font-primary); font-weight: 600; border-radius: 50px; transition: all 0.3s ease; cursor: pointer; border: none; }
+.btn-primary { background-color: var(--accent-color); color: var(--primary-color); }
+.btn-primary:hover { background-color: var(--accent-color-dark); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+
+/* ---------------------------------- */
+/* HEADER & NAVİGASYON (Dil Menüsü Güncellendi) */
+/* ---------------------------------- */
+.header { position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; background-color: rgba(11, 15, 25, 0.8); backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: background-color 0.3s ease; }
+.navbar { display: flex; justify-content: space-between; align-items: center; height: 80px; max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+.nav-logo { display: flex; align-items: center; }
+.logo-image { height: 60px; width: auto; border-radius: 8px; }
+.nav-menu { display: flex; align-items: center; list-style: none; }
+.nav-item { margin-left: 2.5rem; position: relative; }
+.nav-link { font-family: var(--font-primary); font-weight: 500; font-size: 1rem; color: var(--text-color-light); position: relative; padding: 5px 0; display: flex; align-items: center; gap: 0.3rem; }
+.nav-link::after { content: ''; display: block; width: 0; height: 2px; background: var(--accent-color); transition: width 0.3s ease; position: absolute; bottom: 0; left: 0; }
+.nav-link:hover::after { width: 100%; }
+
+/* GÜNCELLENDİ: Dil Değiştirme (JS Click ile) */
+.lang-switcher .nav-link { cursor: pointer; }
+.lang-switcher .nav-link::after { display: none; }
+.lang-toggle .fa-caret-down { transition: transform 0.3s ease; }
+
+.lang-dropdown {
+    display: none; /* JS ile açılacak */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--primary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin-top: 10px;
+    min-width: 150px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* JS bu class'ı eklediğinde menü görünecek */
+.lang-switcher.active .lang-dropdown {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+.lang-switcher.active .lang-toggle .fa-caret-down {
+    transform: rotate(180deg);
+}
+/* (Kalan .lang-option stilleri aynı) */
+.lang-option { display: block; padding: 0.75rem 1.5rem; color: var(--text-color); font-size: 0.9rem; transition: background-color 0.2s ease, color 0.2s ease; }
+.lang-option:hover { background-color: var(--secondary-color); color: var(--text-color-light); }
+
+.hamburger { display: none; cursor: pointer; }
+.bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-color-light); transition: all 0.3s ease-in-out; }
+
+/* ---------------------------------- */
+/* GÜNCELLENDİ: HERO BÖLÜMÜ (CANVAS EKLENDİ) */
+/* ---------------------------------- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 0 2rem;
+    overflow: hidden;
+    background: var(--primary-color);
+    background: linear-gradient(-45deg, #0b0f19, #0F172A, #1a0f30, #0b0f19);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+/* (gradientBG animasyonu aynı) */
+@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+/* (::before ve ::after katmanları aynı) */
+.hero-section::before,
+.hero-section::after { content: ''; position: absolute; left: 50%; top: 50%; width: 300%; height: 300%; background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 10%, rgba(11, 15, 25, 0) 40%); animation: rotate 20s linear infinite; opacity: 0.5; z-index: 0; }
+.hero-section::after { background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, rgba(79, 70, 229, 0.05) 15%, rgba(11, 15, 25, 0) 45%); animation-delay: -10s; animation-direction: reverse; }
+
+@keyframes rotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* YENİ: Parçacık Canvas stili */
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Arka plan animasyonunun üstünde, içeriğin altında */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Canvas'ın üstünde */
+    max-width: 800px;
+}
+
+/* (Kalan hero stilleri aynı) */
+.hero-title { font-size: 4rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; animation: slideInUp 0.8s ease-out; }
+.hero-title .highlight { color: var(--accent-color); }
+.hero-subtitle { font-size: 1.3rem; margin-bottom: 2.5rem; color: var(--text-color); animation: slideInUp 0.8s ease-out 0.2s; animation-fill-mode: backwards; }
+.hero-content .btn { animation: slideInUp 0.8s ease-out 0.4s; animation-fill-mode: backwards; }
+@keyframes slideInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ---------------------------------- */
+/* (HAKKIMIZDA, PROJELER, İLETİŞİM, FOOTER BÖLÜMLERİ) */
+/* (Bu bölümlerde CSS değişikliği yok, öncekiyle aynı) */
+/* ---------------------------------- */
+#about { background-color: var(--secondary-color); }
+.about-content { display: flex; align-items: center; gap: 4rem; }
+.about-text { flex: 2; }
+.about-text h3 { font-size: 2rem; color: var(--accent-color); margin-bottom: 1rem; }
+.about-image { flex: 1; }
+.about-image img { border-radius: 15px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); }
+.mission-vision { display: flex; gap: 1.5rem; margin-top: 2rem; }
+.mission-vision .card { background: var(--primary-color); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-color); flex: 1; }
+.mission-vision .card i { font-size: 2rem; color: var(--accent-color); margin-bottom: 1rem; }
+.mission-vision .card h4 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; align-items: stretch; }
+.project-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid var(--border-color); display: flex; flex-direction: column; }
+.project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); }
+.project-image { overflow: hidden; }
+.project-image img { width: 100%; height: 100%; object-fit: cover; }
+.project-content { padding: 2rem; position: relative; display: flex; flex-direction: column; flex-grow: 1; }
+.project-logo { width: 60px; height: 60px; object-fit: cover; border: 3px solid var(--primary-color); box-shadow: 0 0 15px rgba(0,0,0,0.5); position: absolute; top: -30px; right: 2rem; background: var(--card-bg); }
+img[alt="CapX Logo"] { border-radius: 12px; }
+img[alt="CanDostum Logo"] { border-radius: 50%; }
+img[alt="ZikirMatik Logo"] { border-radius: 12px; }
+.project-title { font-size: 1.5rem; color: var(--text-color-light); margin-bottom: 0.5rem; }
+.project-description { font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+.project-status { font-weight: 600; font-family: var(--font-primary); color: var(--accent-color); }
+#contact { background-color: var(--secondary-color); }
+.contact-wrapper { display: flex; gap: 3rem; background: var(--primary-color); padding: 3rem; border-radius: 15px; border: 1px solid var(--border-color); }
+.contact-info { flex: 1; }
+.contact-info h3 { font-size: 2rem; color: var(--accent-color); margin-bottom: 1rem; }
+.contact-info ul { list-style: none; margin-top: 2rem; }
+.contact-info li { display: flex; align-items: center; font-size: 1rem; margin-bottom: 1.5rem; }
+.contact-info li i { font-size: 1.5rem; color: var(--accent-color); width: 40px; }
+.contact-form-container { flex: 1.5; }
+.contact-form-container h3 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-color-light); }
+.form-group input,
+.form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); background-color: var(--card-bg); border-radius: 8px; color: var(--text-color-light); font-family: var(--font-secondary); }
+.form-group input:focus,
+.form-group textarea:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+#form-status { margin-top: 1rem; font-weight: 500; }
+.footer { background-color: var(--primary-color); padding: 4rem 0 2rem 0; border-top: 1px solid var(--border-color); }
+.footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; }
+.footer-logo img { height: 70px; width: auto; border-radius: 8px; }
+.footer-links, .footer-contact { flex: 1; min-width: 200px; }
+.footer h4 { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 1rem; }
+.footer-links a { display: block; color: var(--text-color); margin-bottom: 0.5rem; }
+.footer-links a:hover { color: var(--text-color-light); padding-left: 5px; }
+.footer-contact p { color: var(--text-color); }
+.footer-bottom { text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; font-size: 0.9rem; color: var(--text-color); }
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.fade-in.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ---------------------------------- */
+/* RESPONSIVE (Dil Menüsü Güncellendi) */
+/* ---------------------------------- */
+@media (max-width: 992px) {
+    .about-content { flex-direction: column; }
+    .about-image { margin-top: 2rem; max-width: 500px; }
+    .contact-wrapper { flex-direction: column; }
+}
+@media (max-width: 768px) {
+    .nav-menu { position: fixed; left: -100%; top: 80px; flex-direction: column; background-color: var(--primary-color); width: 100%; height: 100vh; text-align: center; transition: 0.3s; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); align-items: center; }
+    .nav-menu.active { left: 0; }
+    .nav-item { margin: 1.5rem 0; }
+    .nav-link { font-size: 1.5rem; }
+    
+    /* GÜNCELLENDİ: Mobil için dil menüsü */
+    .lang-switcher .nav-link { font-size: 1.2rem; }
+    .lang-dropdown {
+        position: static;
+        transform: translateY(0);
+        opacity: 1;
+        box-shadow: none;
+        border: none;
+        background: none;
+        margin-top: 0.5rem;
+        padding: 0;
+        width: 100%;
+        /* JS ile açılıp kapandığı için display: block/none artık çalışacak */
+        display: none; 
+    }
+    .lang-switcher.active .lang-dropdown {
+        display: block; 
+    }
+    .lang-option { padding: 0.5rem 1rem; font-size: 1rem; color: var(--text-color); }
+    .lang-option:hover { background: none; color: var(--accent-color); }
+    
+    .hamburger { display: block; }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .hero-title { font-size: 2.8rem; }
+    .hero-subtitle { font-size: 1.1rem; }
+    .section-title { font-size: 2rem; }
+    .mission-vision { flex-direction: column; }
+    .footer-content { flex-direction: column; align-items: center; text-align: center; }
+    .footer-links, .footer-contact { margin-top: 1rem; }
+}
